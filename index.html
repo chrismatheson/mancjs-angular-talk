@@ -11,11 +11,35 @@
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/lib/font/league_gothic-webfont.ttf">
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/lib/font/league_gothic-webfont.svg">
     </head>
+        <script src="//oss.maxcdn.com/libs/angular.js/1.2.5/angular.min.js"></script>
+        <script src="//oss.maxcdn.com/libs/moment.js/2.4.0/moment.min.js"></script>
+        <script src="countup.js"></script>
     <body>
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>Background</h2>
+                    <section>
+                        <h2>Chris Matheson</h2>
+                        <br>
+                        <a>@chrismatheson</a>
+                        <br>
+                        <a>github.com/chrismatheson</a>
+                        <br>
+                        <a>#mancjs</a>
+                    </section>
+                    <section ng-app="countup">
+                        <h2><i>"Profesional"</i> developer</h2>
+                        <br>
+                        <p>for</p>
+                        <br>
+                        <countup since="05/16/2013" interval="1000"><b>{{months}}</b> Months <b>{{days}}</b> Days <b>{{hours}}</b> Hours <b>{{minutes}}</b> Minutes <b>{{seconds}}</b> seconds</b></countup>
+                    </section>
+                    <section>
+                        <h1>NO EXCUSES!</h1>
+                    </section>
+                </section>
+                <section>
+                    <img src="http://ivendi.com/img/ivendi_logo.svg">
                     <br>
                     <p>iVendi is a used/new car finance system</p>
                     <p>providing finance services for dealerships</p>
@@ -23,8 +47,17 @@
                     <p>Check it out -- <a href="http://www.ivendi.com">http://www.ivendi.com</a></p>
                 </section>
                 <section>
-                    <h3>Angular</h3>
+                    <h3>Custom validators</h3>
+                    <code>
+                        thing = {};
+                    </code>
                 </section>
+                <section>
+                    <h3>Binding</h3>
+                    <p>Magic</p>
+                    <img src="http://media.giphy.com/media/LmudG3zH559fO/giphy.gif">
+                </section>
+
             </div>
         </div>
         <script type="application/javascript" src="//oss.maxcdn.com/libs/reveal.js/2.5/lib/js/head.min.js"></script>
