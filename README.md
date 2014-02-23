@@ -4,13 +4,13 @@ The idea of this talk is to show the internals of the iVendi platform (focusing 
 
 ###Disclaimer
 
-Im not doing **all** the work.
-You **will** be asked to proffer sugestions & direction
-iVendi is a small company with large goals, this is all **real** code, **no** examples
+Im not doing **all** the work, you **will** be asked to proffer sugestions for direction and disscussion. This session aims for a forum where angular appraoches to problems can be demo'ed abd then have a small comprision to other's (jQurey POJS react backbone ember etc)
+
+The talk is not going to show you 'perfect world' code. Ivendi is a small operation and we have lots to do in limited time with too few resources - sometimes if the code works we just have to move on without time to reflect, refactor and improve!
 
 #Approach
 
-The talk will have a loose flow explaining all the parts that make up the iVendi system. Ill attempt to civer as much of this list as possible, but i want to encourage audience participation to guid the journey.
+The talk will have a loose flow explaining all the parts that make up the iVendi system. Ill attempt to cover as much of this list as possible, but i want to encourage audience participation to guid the journey.
 
 - CQRS Kernel
 - C# API
@@ -26,12 +26,14 @@ The talk will have a loose flow explaining all the parts that make up the iVendi
     - view management
         - resolve function (helpfull & harmfull)
         - angular from non root level location
+- trolling
+    - Grunt V Gulp speed demo
 
 - possible area's that can also be covered (although maybe not very well by me)
     - building & testing
         - TeamCity
         - Bower
-        - Grunt angular specific tasks
+        - angular specific tasks
     - deployment
         - azure
     - componentization
