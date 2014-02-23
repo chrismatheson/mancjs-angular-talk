@@ -49,7 +49,10 @@ The talk will have a loose flow explaining all the parts that make up the iVendi
     - Graph DB for data import
         - (annother talk completely)
 
-Im going to try and host a town-hall style talk, encouraging audience participation in both the asking of questions, sugesting direction of the walktrhough and descussion of problems / solutions.
+#Ahead of time
 
+it would be helpfull but by no means required to have a basic understanding of what angular is. Id recomend  [egghead.io](http://egghead.io/) as well as the [angualr site itself](http://angularjs.org)
 
+Think of some things you are doing, or want to do, and would liek to see how this would be approahed in angular
 
+Send PR's for topics to cover, or raise issues and +1 for topics of interest.
