@@ -13,9 +13,10 @@
     </head>
         <script src="//oss.maxcdn.com/libs/angular.js/1.2.5/angular.min.js"></script>
         <script src="//oss.maxcdn.com/libs/moment.js/2.4.0/moment.min.js"></script>
-        <script src="countup.js"></script>
+        <script src="//oss.maxcdn.com/libs/reveal.js/2.5/plugin/highlight/highlight.js"></script>
+        <script src="stuff.js"></script>
     <body>
-        <div class="reveal">
+        <div class="reveal" ng-app="app">
             <div class="slides">
                 <section>
                     <section>
@@ -27,7 +28,7 @@
                         <br>
                         <a>#mancjs</a>
                     </section>
-                    <section ng-app="countup">
+                    <section>
                         <h2><i>"Profesional"</i> developer</h2>
                         <br>
                         <p>for</p>
@@ -49,7 +50,16 @@
                 <section>
                     <h3>Custom validators</h3>
                     <code>
-                        thing = {};
+                        <form name="examplez">
+                            <div class="fragment" data-fragment-index="0">
+                                <p>Valid while exactly 6 digits</p>
+                                <input name="sortcode" ng-model="sorted" type="sortcode"> Valid: {{examplez.sortcode.$valid}}
+                            </div>
+                            <div class="fragment" data-fragment-index="1">
+                                <p>valid when over 18</p>
+                                <input name="age" type="text" min-age="18"> Valid: {{examplez.age.$valid}}
+                            </div>
+                        </form>
                     </code>
                 </section>
                 <section>
