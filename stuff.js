@@ -1,5 +1,5 @@
-/*globals angular, moment*/
-angular.module('app', [])
+/*globals angular, moment, document*/
+angular.module('app', ['ivYearsMonths'])
     .directive('countup', function($interval) {
         return {
           restrict: 'EA',
