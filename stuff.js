@@ -89,3 +89,11 @@ angular.module('app', [])
             }
         };
     });
+
+/**
+ * Lets try this with POJS bitches!!!
+ */
+function playAllVideo() {
+    document.querySelector('#grunt').play();
+    document.querySelector('#gulp').play();
+}
