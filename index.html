@@ -11,6 +11,7 @@
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/css/theme/default.css">
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/lib/font/league_gothic-webfont.ttf">
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/lib/font/league_gothic-webfont.svg">
+<!--        <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" rel="stylesheet">-->
         <script src="//oss.maxcdn.com/libs/angular.js/1.2.5/angular.min.js"></script>
         <script src="//oss.maxcdn.com/libs/moment.js/2.4.0/moment.min.js"></script>
         <script src="//oss.maxcdn.com/libs/reveal.js/2.5/plugin/highlight/highlight.js"></script>
@@ -20,8 +21,8 @@
     <body>
         <div class="reveal" ng-app="app">
             <div class="slides">
-                <section>
-                    <section>
+                <section id="about">
+                    <section  id="me">
                         <h2>Chris Matheson</h2>
                         <br>
                         <a>@chrismatheson</a>
@@ -30,7 +31,7 @@
                         <br>
                         <a>#mancjs</a>
                     </section>
-                    <section>
+                    <section id="tme">
                         <h2>
                             <i>"Profesional"</i>developer</h2>
                         <br>
@@ -44,11 +45,11 @@
                             <b>{{seconds}}</b>seconds</b>
                         </countup>
                     </section>
-                    <section>
+                    <section  id="you">
                         <h1>NO EXCUSES!</h1>
                     </section>
                 </section>
-                <section>
+                <section id="ivendi">
                     <img src="ivendi-logo-background_360.png">
                     <br>
                     <p>iVendi is a used/new car finance system</p>
@@ -58,34 +59,78 @@
                         <a href="http://www.ivendi.com">http://www.ivendi.com</a>
                     </p>
                 </section>
-                <section>
+                <section id="custom-validators">
                     <h3>Custom validators</h3>
                     <code>
-                        <form name="examplez">
+                        <form name="exampleA">
                             <div class="fragment" data-fragment-index="0">
                                 <p>Valid while exactly 6 digits</p>
-                                <input name="sortcode" ng-model="sorted" type="sortcode">Valid: {{examplez.sortcode.$valid}}</div>
+                                <input name="sortcode" ng-model="sorted" type="sortcode">Valid: {{exampleA.$valid}}</div>
+                        </form>
+                        <form name="exampleB">
                             <div class="fragment" data-fragment-index="1">
                                 <p>valid when over 18</p>
-                                <input name="age" type="text" min-age="18">Valid: {{examplez.age.$valid}}</div>
+                                <input name="age" ng-model="age" type="text" min-age="18">Valid: {{exampleB.$valid}}</div>
                         </form>
                     </code>
                 </section>
-                <section>
+                <section id="custom-binding">
                     <h3>Binding</h3>
                     <p>Magic</p>
                     <img src="http://media.giphy.com/media/LmudG3zH559fO/giphy.gif">
                 </section>
-                <section>
+                <section id="custom-control">
                     <label>Total Months : {{months}}</label>
                     <iv-years-months ng-model="months"></iv-years-months>
                 </section>
-                <section>
-                    <h1>Grunt vs Gulp.</h1>
-
+                <section id="routes">
+                    <h3>Angular from non root location</h3>
+                    <ul>
+                        <li>relative URL's are not your friend</li>
+                        <li>when(&lt;url&gt;) does not obey &lt;base&gt;</li>
+                    </ul>
+                </section>
+                <section id="resolve">
+                    <h3>View Management</h3>
+                    <pre>
+                        <code class="javascript">
+    .when('/platform/consumerprospects/:id/finance', {
+        templateUrl: 'consumerprospects/finance.tpl.html',
+        controller: 'ConsumerFinanceController',
+        auth: true,
+        reloadOnSearch: false,
+        resolve: {
+            consumerProspect: function () {
+                return //doing some stuff and returning POJS;
+            }]
+        }
+    })
+    .controller('ConsumerFinanceController', ['consumerProspect', function (consumerProspect) {
+        'use strict';
+                        </code>
+                    </pre>
+                </section>
+                <section id="partial-views">
+                    <h3>Partial Views</h3>
+                    <ul>
+                        <li>Example: accordian within prospect page</li>
+                        <li>Components: &lt;iv-bank&gt; <small>more on this in a bit</small></li>
+                        <li>No Clue&#39;s how to do this</li>
+                        <li>ui.router &#40;not tried it yet&#41;</li>
+                    </ul>
+                </section>
+                <section id="components">
+                    <h3>Components</h3>
+                    <ul>
+                        <li>&lt;custom-elements&gt;&lt;/custom-elements&gt;</li>
+                        <li>isolated scope and inherited scope</li>
+                    </ul>
+                </section>
+                <section id="trolling">
+                    <h3>Grunt vs Gulp.</h3>
                     <div>
-                        <video id="grunt" src="http://dl.dropboxusercontent.com/u/4582414/grunt.mov" style="float:left; width:50%;"></video>
-                        <video id="gulp" src="http://dl.dropboxusercontent.com/u/4582414/gulp.mov" style="float:left; width:50%;"></video>
+                        <video id="grunt" src="http://dl.dropboxusercontent.com/u/4582414/grunt.mov" style="float:left; width:50%;" onprogress="setGruntProg(this)"></video>
+                        <video id="gulp" src="http://dl.dropboxusercontent.com/u/4582414/gulp.mov" style="float:left; width:50%;" onprogress="setGulpProg(this)"></video>
                     </div>
                     <button onclick="playAllVideo()"><h1>Fight!</h1></button>
                 </section>
@@ -95,7 +140,11 @@
         <script type="application/javascript" src="//oss.maxcdn.com/libs/reveal.js/2.5/lib/js/classList.js"></script>
         <script src="//oss.maxcdn.com/libs/reveal.js/2.5/js/reveal.min.js"></script>
         <script type="application/javascript">
-            Reveal.initialize({});
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
         </script>
     </body>
 
