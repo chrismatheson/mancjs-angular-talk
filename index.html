@@ -91,6 +91,7 @@
                         <img class="logo" alt="jasmine" src="http://jasmine.github.io/images/jasmine_vertical.png">
                         <img class="logo" alt="karma" src="https://avatars.githubusercontent.com/u/3284117">
                         <img class="logo" alt="teamcity" src="http://build.ivendi.com:8080/teamcity/img/icons/TeamCity32.png">
+                        <img class="logo" alt="teamcity" src="https://pbs.twimg.com/profile_images/794342508/Logo_Square.png">
                         <img class="logo" alt="azure" src="https://avatars.githubusercontent.com/u/1065621">
                         <img class="logo" alt="joyent" src="https://avatars.githubusercontent.com/u/10161">
                     </p>
@@ -109,9 +110,9 @@
                 <section>
                     <h1>Walkthrough</h1>
                     <p>
-                        <a href="http://siam.ivendi.com/platform/prospects">Dealer Application</a>
+                        <a href="http://chrismbp.local:3000/platform/prospects">Dealer Application</a>
                         <span style="width: 100px;"> </span>
-                        <a href="http://uat.appform.newvehicle.com/proposal/welcome?quoteid=5239dcb0-74b7-414b-b19c-e13c5e9087aa&b=NV">NewVehicle</a>
+                        <a href="http://chrismbp.local:4001/proposal/welcome?quoteid=5239dcb0-74b7-414b-b19c-e13c5e9087aa&b=NV">NewVehicle</a>
                     </p>
                 </section>
                 <section id="custom-binding">
@@ -189,6 +190,34 @@ function parseInputs() {
                     <h3>View Management</h3>
                     <pre>
                         <code class="javascript">
+    .when('/platform/prospects/:id/finance', {
+        templateUrl: 'prospects/finance.tpl.html',
+        controller: 'FinanceController',
+        auth: true,
+        reloadOnSearch: false,
+        resolve: {
+            prospect: function () {
+                return //doing some stuff and returning POJS;
+            }]
+        }
+    })
+    .controller('FinanceController', ['prospect', function (prospect) {
+        'use strict';
+                        </code>
+                    </pre>
+                </section>
+                <section id="components">
+                    <h3>Components</h3>
+                    <ul>
+                        <li>&lt;custom-elements&gt;&lt;/custom-elements&gt;</li>
+                        <li>isolated scope and inherited scope</li>
+                    </ul>
+                    <img class="fragment" data-fragment-index="0" src="prospect-page-components.png">
+                </section>
+                <section id="resolve">
+                    <h3>View Management</h3>
+                    <pre>
+                        <code class="javascript">
     .when('/platform/consumerprospects/:id/finance', {
         templateUrl: 'consumerprospects/finance.tpl.html',
         controller: 'ConsumerFinanceController',
@@ -205,32 +234,15 @@ function parseInputs() {
                         </code>
                     </pre>
                 </section>
-                <section id="partial-views">
-                    <h3>Partial Views</h3>
-                    <ul>
-                        <li>Example: accordian within prospect page</li>
-                        <li>Components: &lt;iv-bank&gt; <small>more on this in a bit</small></li>
-                        <li>ui.router &#40;not tried it yet&#41;</li>
-                    </ul>
-                </section>
-                <section id="components">
-                    <section>
-                        <h3>Components</h3>
-                        <ul>
-                            <li>&lt;custom-elements&gt;&lt;/custom-elements&gt;</li>
-                            <li>isolated scope and inherited scope</li>
-                        </ul>
-                        <img class="fragment" data-fragment-index="0" src="prospect-page-components.png">
-                    </section>
-                    <section>
+                <section>
                         <img src="prospect-page-components-2.png">
-                    </section>
                 </section>
                 <section>
                     <h3>Lessons Learnt</h3>
                     <ul>
                         <li>Dont - Component-all-the-things</li>
                         <li>relative URL's are not your friend - when&#40;&#58;url&#58;&#41; does not obey &lt;base&gt;</li>
+                        <li>No lazy load of Modules</li>
                     </ul>
                 </section>
                 <section id="trolling">
@@ -240,6 +252,15 @@ function parseInputs() {
                         <video id="gulp" src="http://dl.dropboxusercontent.com/u/4582414/gulp.mov" style="float:left; width:50%;" onprogress="setGulpProg(this)"></video>
                     </div>
                     <button onclick="playAllVideo()"><h1>Fight!</h1></button>
+                </section>
+                <section>
+                    <h3>In the pipeline</h3>
+                    <ul>
+                        <li>Chat Module, multi user</li>
+                        <li>Leveragge elastic search</li>
+                        <li>Stock manager</li>
+                        <li>Advanced user management, mascarading</li>
+                    </ul>
                 </section>
                 <section>
                     <h1>Open Source</h1>
