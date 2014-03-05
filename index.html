@@ -17,6 +17,16 @@
         <script src="//oss.maxcdn.com/libs/reveal.js/2.5/plugin/highlight/highlight.js"></script>
         <script src="stuff.js"></script>
         <script src="ivYearsMonths/ivYearsMonths.drtv.js"></script>
+
+        <style>
+            .reveal section img.logo {
+                background: none;
+                border: 0px;
+                height: 80px;
+                width: 80px;
+                margin: 0px;
+            }
+        </style>
     </head>
     <body>
         <div class="reveal" ng-app="app">
@@ -57,6 +67,44 @@
                     <br>
                     <p>Check it out --
                         <a href="http://www.ivendi.com">http://www.ivendi.com</a>
+                    </p>
+                </section>
+                <section>
+                    <h1>Technologies</h1>
+                    <p>
+                        <h3>Client Side</h3>
+                        <img class="logo" alt="angular" src="ng-logo.png">
+                        <img class="logo" alt="jQuery" src="https://avatars.githubusercontent.com/u/70142">
+                        <img class="logo" alt="lo-dash" src="https://avatars.githubusercontent.com/u/2565403">
+                        <img class="logo" alt="moment" src="https://avatars.githubusercontent.com/u/4129662">
+                        <img class="logo" alt="less" src="http://lesscss.org/public/img/logo.png">
+                    </p>
+                    <p>
+                        <h3>Build Tools</h3>
+                        <img class="logo" alt="vagrant" src="vagrant-logo.png">
+                        <img class="logo" alt="gulp" src="https://avatars.githubusercontent.com/u/6200624">
+                        <img class="logo" alt="jasmine" src="http://jasmine.github.io/images/jasmine_vertical.png">
+                        <img class="logo" alt="karma" src="https://avatars.githubusercontent.com/u/3284117">
+                        <img class="logo" alt="teamcity" src="http://build.ivendi.com:8080/teamcity/img/icons/TeamCity32.png">
+                        <img class="logo" alt="azure" src="https://avatars.githubusercontent.com/u/1065621">
+                        <img class="logo" alt="joyent" src="https://avatars.githubusercontent.com/u/10161">
+                    </p>
+                    <p>
+                        <h3>Backend</h3>
+                        <img class="logo" alt="elastic search" src="https://avatars.githubusercontent.com/u/141304">
+                        <img class="logo" alt="nancyFx" src="https://avatars.githubusercontent.com/u/706659">
+                        <img class="logo" alt="cqrs" src="http://gyazo.com/87d68364e1812a2156513ce49277d483.png">
+                        <img class="logo" alt="neo4j" src="https://avatars.githubusercontent.com/u/201120">
+                        <img class="logo" alt="mongodb" src="https://avatars.githubusercontent.com/u/45120">
+                        <img class="logo" alt="rabitmq" src="https://avatars.githubusercontent.com/u/96669">
+                    </p>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Walkthrough</h1>
+                    <p>
+                        <a href="http://siam.ivendi.com/platform/prospects">Dealer Application</a>
+                        <a href="http://uat.appform.newvehicle.com/proposal/welcome?quoteid=5239dcb0-74b7-414b-b19c-e13c5e9087aa&b=NV">NewVehicle</a>
                     </p>
                 </section>
                 <section id="custom-validators">
@@ -133,6 +181,10 @@
                         <video id="gulp" src="http://dl.dropboxusercontent.com/u/4582414/gulp.mov" style="float:left; width:50%;" onprogress="setGulpProg(this)"></video>
                     </div>
                     <button onclick="playAllVideo()"><h1>Fight!</h1></button>
+                </section>
+                <section>
+                    <h1>Open Source</h1>
+                    <a href="http://ivendi.github.io/iv-utils/examples">iv-utils</a>
                 </section>
             </div>
         </div>
