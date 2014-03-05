@@ -4,8 +4,6 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/css/reveal.min.css">
         <link type="text/css" rel="stylesheet" href="//oss.maxcdn.com/libs/reveal.js/2.5/css/theme/default.css">
@@ -16,6 +14,7 @@
         <script src="//oss.maxcdn.com/libs/moment.js/2.4.0/moment.min.js"></script>
         <script src="//oss.maxcdn.com/libs/reveal.js/2.5/plugin/highlight/highlight.js"></script>
         <script src="stuff.js"></script>
+        <script src="//ivendi.github.io/iv-utils/dist/ivUtils.min.js"></script>
         <script src="ivYearsMonths/ivYearsMonths.drtv.js"></script>
 
         <style>
@@ -25,6 +24,14 @@
                 height: 80px;
                 width: 80px;
                 margin: 0px;
+            }
+
+            .reveal section i.prof {
+                padding-right: 0.7em;
+            }
+
+            .reveal section#time p {
+                margin: 50px;
             }
         </style>
     </head>
@@ -41,12 +48,9 @@
                         <br>
                         <a>#mancjs</a>
                     </section>
-                    <section id="tme">
-                        <h2>
-                            <i>"Profesional"</i>developer</h2>
-                        <br>
+                    <section id="time">
+                        <h2><i class="prof">"Profesional"</i>developer</h2>
                         <p>for</p>
-                        <br>
                         <countup since="05/16/2013" interval="1000">
                             <b>{{months}}</b>Months
                             <b>{{days}}</b>Days
@@ -79,6 +83,7 @@
                         <img class="logo" alt="moment" src="https://avatars.githubusercontent.com/u/4129662">
                         <img class="logo" alt="less" src="http://lesscss.org/public/img/logo.png">
                     </p>
+                    <hr>
                     <p>
                         <h3>Build Tools</h3>
                         <img class="logo" alt="vagrant" src="vagrant-logo.png">
@@ -89,6 +94,7 @@
                         <img class="logo" alt="azure" src="https://avatars.githubusercontent.com/u/1065621">
                         <img class="logo" alt="joyent" src="https://avatars.githubusercontent.com/u/10161">
                     </p>
+                    <hr>
                     <p>
                         <h3>Backend</h3>
                         <img class="logo" alt="elastic search" src="https://avatars.githubusercontent.com/u/141304">
@@ -104,8 +110,14 @@
                     <h1>Walkthrough</h1>
                     <p>
                         <a href="http://siam.ivendi.com/platform/prospects">Dealer Application</a>
+                        <span style="width: 100px;"> </span>
                         <a href="http://uat.appform.newvehicle.com/proposal/welcome?quoteid=5239dcb0-74b7-414b-b19c-e13c5e9087aa&b=NV">NewVehicle</a>
                     </p>
+                </section>
+                <section id="custom-binding">
+                    <h3>Binding</h3>
+                    <p>Magic</p>
+                    <img src="http://media.giphy.com/media/LmudG3zH559fO/giphy.gif">
                 </section>
                 <section id="custom-validators">
                     <h3>Custom validators</h3>
@@ -115,28 +127,63 @@
                                 <p>Valid while exactly 6 digits</p>
                                 <input name="sortcode" ng-model="sorted" type="sortcode">Valid: {{exampleA.$valid}}</div>
                         </form>
-                        <form name="exampleB">
-                            <div class="fragment" data-fragment-index="1">
-                                <p>valid when over 18</p>
-                                <input name="age" ng-model="age" type="text" min-age="18">Valid: {{exampleB.$valid}}</div>
-                        </form>
+                        <br>
+                        <div class="fragment" data-fragment-index="1">
+                            <p>Within a directive decliration we can hook into binding</p>
+                            <pre>
+var regex = /[0-9]{2}[0-9]{2}[0-9]{2}/;
+
+function validate(inputString) {
+    var validity = regex.test(inputString) && inputString.length === 6;
+    ngModel.$setValidity('sortcode', validity);
+    return inputString;
+}
+
+function stripDashes(inputString) {
+    return inputString.replace(/-/g, '');
+}
+
+ngModel.$parsers.push(stripDashes);
+ngModel.$parsers.push(validate);
+                            </pre>
+                        </div>
                     </code>
                 </section>
-                <section id="custom-binding">
-                    <h3>Binding</h3>
-                    <p>Magic</p>
-                    <img src="http://media.giphy.com/media/LmudG3zH559fO/giphy.gif">
-                </section>
                 <section id="custom-control">
+                    <h3>Something a little harder</h3>
+                    <p>One Value, Two inputs</p>
                     <label>Total Months : {{months}}</label>
                     <iv-years-months ng-model="months"></iv-years-months>
-                </section>
-                <section id="routes">
-                    <h3>Angular from non root location</h3>
-                    <ul>
-                        <li>relative URL's are not your friend</li>
-                        <li>when(&lt;url&gt;) does not obey &lt;base&gt;</li>
-                    </ul>
+                    <div class="fragment" data-fragment-index="1">
+                        <p>Creating a first-class citizen binding control with</p>
+                        <pre>
+ngModel.$render = function renderYearsMonths() {
+    if (angular.isNumber(ngModel.$modelValue)) {
+        $months.val(ngModel.$modelValue % 12);
+        $years.val(Math.floor(ngModel.$modelValue / 12));
+    } else {
+        $inputs.val('');
+    }
+};
+
+function parseInputs() {
+    //if no inputs then bail
+    if (years === '' && months === '') {
+        ngModel.$setViewValue(undefined);
+        return undefined;
+    }
+    //otherwise we want to convert the empty string to a 0 before continuing
+    years = years === '' ? '0' : years; months = months === '' ? '0' : months;
+    years  = parseInt(years, 10); months = parseInt(months, 10);
+
+    if (isNaN(years) && isNaN(months)) {
+        ngModel.$setViewValue(undefined);
+    } else {
+        ngModel.$setViewValue((years * 12) + months);
+    }
+}
+                        </pre>
+                    </div>
                 </section>
                 <section id="resolve">
                     <h3>View Management</h3>
@@ -163,15 +210,27 @@
                     <ul>
                         <li>Example: accordian within prospect page</li>
                         <li>Components: &lt;iv-bank&gt; <small>more on this in a bit</small></li>
-                        <li>No Clue&#39;s how to do this</li>
                         <li>ui.router &#40;not tried it yet&#41;</li>
                     </ul>
                 </section>
                 <section id="components">
-                    <h3>Components</h3>
+                    <section>
+                        <h3>Components</h3>
+                        <ul>
+                            <li>&lt;custom-elements&gt;&lt;/custom-elements&gt;</li>
+                            <li>isolated scope and inherited scope</li>
+                        </ul>
+                        <img class="fragment" data-fragment-index="0" src="prospect-page-components.png">
+                    </section>
+                    <section>
+                        <img src="prospect-page-components-2.png">
+                    </section>
+                </section>
+                <section>
+                    <h3>Lessons Learnt</h3>
                     <ul>
-                        <li>&lt;custom-elements&gt;&lt;/custom-elements&gt;</li>
-                        <li>isolated scope and inherited scope</li>
+                        <li>Dont - Component-all-the-things</li>
+                        <li>relative URL's are not your friend - when&#40;&#58;url&#58;&#41; does not obey &lt;base&gt;</li>
                     </ul>
                 </section>
                 <section id="trolling">
